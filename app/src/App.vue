@@ -1,9 +1,14 @@
 <template>
   <TheHeader v-if="showHeader" />
 
-  <div>
-    Nome: {{ name }}
+  <div v-show="showName">
+    Nome: {{ firstName }} <br>
+    Sobrenome: {{ lastName }}
   </div>
+
+  <div v-if="accessLevel === 'admin'">Usuário Admin</div>
+  <div v-else-if="accessLevel === 'marketing'">Usuário Marketing</div>
+  <div v-else>Usuário normal</div>
 
   <img alt="Vue logo"
        src="./assets/logo.png">
@@ -23,7 +28,10 @@ export default {
   data() {
     return {
       showHeader: true,
-      name: "John Snow",
+      firstName: "John",
+      lastName: "Snow",
+      showName: false,
+      accessLevel: "admin",
     };
   },
 };
